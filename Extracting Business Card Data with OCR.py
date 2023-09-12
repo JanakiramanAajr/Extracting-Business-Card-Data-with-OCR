@@ -153,7 +153,10 @@ if selected == 'Upload Image':
 
 if selected == "Modify":
     mycursor.execute("SHOW COLUMNS FROM business_data LIKE 'id'")
-    mycursor.execute("ALTER TABLE business_data DROP COLUMN id")
+    try:
+        mycursor.execute("ALTER TABLE business_data DROP COLUMN id")
+    except:
+        pass
     mycursor.execute('ALTER TABLE business_data ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY')
     mycursor.execute('SELECT id, company_name, card_holder_name, designation, mobile_number,'
                      ' email_address, website_url, area, city, state,'
